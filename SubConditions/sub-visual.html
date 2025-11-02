@@ -125,6 +125,8 @@
             }
 
             console.log(dados); // Aqui você vê todos os valores no console
+            localStorage.setItem('formularioVisual', JSON.stringify(dados));
+
 
             // Se quiser passar os dados para a próxima página via URL:
             const queryString = new URLSearchParams(dados).toString();
