@@ -104,8 +104,33 @@
         });
 
         function irParaProximaPagina() {
-            window.location.href = '../Templates/Condition.html?condition=auditivo';
+            const form = document.getElementById('meuFormulario');
+            const formData = new FormData(form); // pega todos os valores do formulário
+
+            // Para armazenar os valores de forma legível
+            const dados = {};
+
+            // FormData retorna pares chave/valor
+            for (let [key, value] of formData.entries()) {
+                // Se a chave já existir, transforma em array
+                if (dados[key]) {
+                    if (Array.isArray(dados[key])) {
+                        dados[key].push(value);
+                    } else {
+                        dados[key] = [dados[key], value];
+                    }
+                } else {
+                    dados[key] = value;
+                }
+            }
+
+            console.log(dados); // Aqui você vê todos os valores no console
+
+            // Se quiser passar os dados para a próxima página via URL:
+            const queryString = new URLSearchParams(dados).toString();
+            window.location.href = '../Templates/Condition.html?' + queryString;
         }
+
 
     </script>
 </body>
